@@ -26,8 +26,8 @@ public abstract class TestBase {
 	  protected ExtentHtmlReporter htmlReporter;
 	  protected ExtentTest extentLogger;
 
-	  @BeforeTest
-	  public void setUpTest() {
+	  @BeforeTest(alwaysRun = true)
+	  public void setUpTest()  {
 	    // actual reporter
 	    report = new ExtentReports();
 	    // System.getProperty("user.dir") ---> get the path to current project
@@ -75,10 +75,10 @@ public abstract class TestBase {
 	  } else if (result.getStatus() == ITestResult.SKIP) {
 	    extentLogger.skip("Test Case Skipped is " + result.getName());
 	  }
-	  Driver.closeDriver();
+	 Driver.closeDriver();
 	}
 
-	@AfterTest
+	@AfterTest(alwaysRun = true)
 	public void tearDownTest() {
 	  report.flush();
 	}
