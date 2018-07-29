@@ -28,6 +28,7 @@ public abstract class TestBase {
 
 	  @BeforeTest(alwaysRun = true)
 	  public void setUpTest()  {
+			BrowserUtils.waitFor(3);
 	    // actual reporter
 	    report = new ExtentReports();
 	    // System.getProperty("user.dir") ---> get the path to current project
@@ -48,6 +49,7 @@ public abstract class TestBase {
 
 	  @BeforeMethod(alwaysRun = true)
 	  public void setUp() {
+
 	    driver = Driver.getDriver();
 	    actions = new Actions(driver);
 	    driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
@@ -59,8 +61,9 @@ public abstract class TestBase {
 
 	@AfterMethod(alwaysRun = true)
 	public void tearDown(ITestResult result) throws IOException {
+
 		//checking if the test method failed
-	  if (result.getStatus() == ITestResult.FAILURE) {
+	  if ( result.getStatus() == ITestResult.FAILURE) {
 		  //get screenshot using t
 		String screenshotLocation = BrowserUtils.getScreenshot(result.getName());
 		  //capture the name of the failing method
@@ -75,7 +78,10 @@ public abstract class TestBase {
 	  } else if (result.getStatus() == ITestResult.SKIP) {
 	    extentLogger.skip("Test Case Skipped is " + result.getName());
 	  }
-	 Driver.closeDriver();
+	  
+	    //Driver.closeDriver();
+
+	
 	}
 
 	@AfterTest(alwaysRun = true)

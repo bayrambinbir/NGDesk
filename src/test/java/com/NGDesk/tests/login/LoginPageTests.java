@@ -18,6 +18,7 @@ public class LoginPageTests extends TestBase {
 	
 	@Test(groups= {"smoke"})
 	public void loginTest() {
+		BrowserUtils.waitFor(3);
 		homePage.loginButton.click();
 		homePage.subdomainBox.sendKeys(ConfigurationReader.getProperty("subdomain"));
 		homePage.goLoginButton.click();
