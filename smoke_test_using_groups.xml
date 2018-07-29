@@ -1,17 +1,31 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<!--printing information in console,if you give number 5 to verbose it will 
+	print more information, its helpful when you do debugging -->
 <suite name="Smoke tests" verbose="2">
-
-	<test name="Smoke tests">
+	<test name="Login smoke tests">
+		<!--group prints inside all group methods certain method -->
 		<groups>
 			<run>
+				<!--we are printing certain group methods from the certain classes -->
 				<include name="smoke"></include>
 			</run>
 		</groups>
-
-		<packages>
-			<package name="com.NGDesk.tests.login"/>
-		</packages>
+		<classes>
+			<!--we give our class path here -->
+			<class name="com.NGDesk.tests.login.LoginPageTests"></class>
+		</classes>
 	</test>
-
-
+	<test name="Homepage smoke tests">
+		<!--group prints inside all group methods certain method -->
+		<groups>
+			<run>
+				<!--we are printing certain group methods from the certain classes -->
+				<include name="smoke"></include>
+			</run>
+		</groups>
+		<classes>
+			<!--we give our class path here -->
+			<class name="com.NGDesk.tests.login.HomePageTests"></class>
+		</classes>
+	</test>
 </suite>
