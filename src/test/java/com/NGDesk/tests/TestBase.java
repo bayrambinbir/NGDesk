@@ -59,6 +59,7 @@ public abstract class TestBase {
 
 	@AfterMethod(alwaysRun = true)
 	public void tearDown(ITestResult result) throws IOException {
+
 		// checking if the test method failed
 		if (result.getStatus() == ITestResult.FAILURE) {
 			// get screenshot using t
@@ -76,6 +77,7 @@ public abstract class TestBase {
 			extentLogger.skip("Test Case Skipped is " + result.getName());
 		}
 //		Driver.closeDriver();
+
 	}
 
 	@AfterTest(alwaysRun = true)
