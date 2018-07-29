@@ -21,17 +21,7 @@ public class ControlPanelPageTests extends TestBase {
 	HomePage homePage = new HomePage();
 	LoginPage loginPage = new LoginPage();
 	ControlPanelPage controlPanelPage = new ControlPanelPage();
-	
-	@BeforeMethod
-	public void setup() {
-		homePage.loginButton.click();
-		homePage.subdomainBox.sendKeys(ConfigurationReader.getProperty("subdomain"));
-		homePage.goLoginButton.click();
-		loginPage.username.sendKeys(ConfigurationReader.getProperty("username"));
-		loginPage.password.sendKeys(ConfigurationReader.getProperty("password"));
-		loginPage.loginButton.click();
-		ticketPage.randomTicket.click();
-	}
+
 	
 	@Test(groups= {"smoke"})
 	public void verifyControlPanel() {

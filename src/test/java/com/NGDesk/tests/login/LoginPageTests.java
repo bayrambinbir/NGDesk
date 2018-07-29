@@ -14,14 +14,7 @@ public class LoginPageTests extends TestBase {
 	HomePage homePage = new HomePage();
 	LoginPage loginPage = new LoginPage();
 
-	
-	@BeforeMethod
-	public void setup() {
-		homePage.loginButton.click();
-		homePage.subdomainBox.sendKeys(ConfigurationReader.getProperty("subdomain"));
-		homePage.goLoginButton.click();
-		BrowserUtils.waitFor(3);
-	}
+
 	
 	@Test(groups= {"smoke"})
 	public void loginTest() {
