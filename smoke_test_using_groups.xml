@@ -17,8 +17,11 @@
 			<class name="com.NGDesk.tests.login.HomePageTests"></class>
 		</classes>
 	</test>
+<<<<<<< HEAD
 	
 	
+=======
+>>>>>>> 7b6b73fd0fc5a82773fc9e808bbdd1b4fd001ac3
 	<test name="NGDesk2 smoke test">
 		<!--group prints inside all group methods certain method -->
 		<groups>
@@ -32,6 +35,9 @@
 			<class name="com.NGDesk.tests.login.LoginPageTests"></class>
 		</classes>
 	</test>
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 7b6b73fd0fc5a82773fc9e808bbdd1b4fd001ac3
 </suite>
