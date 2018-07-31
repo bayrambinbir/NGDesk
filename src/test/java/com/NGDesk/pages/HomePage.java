@@ -20,7 +20,7 @@ public class HomePage {
 	
 	@FindBy(css=".btn.btn-block.col-12.mx-auto.ng-binding")
 	public WebElement goLoginButton;
-	
+	//TC6-GS
 	@FindBy(css=".menu-text.fusion-button.button-default.button-small")
 	public WebElement signUpButton;
 }

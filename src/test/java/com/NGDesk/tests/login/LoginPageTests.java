@@ -1,6 +1,6 @@
 package com.NGDesk.tests.login;
 
-import org.testng.annotations.BeforeMethod;
+//Smoke Test
 import org.testng.annotations.Test;
 
 import com.NGDesk.pages.HomePage;

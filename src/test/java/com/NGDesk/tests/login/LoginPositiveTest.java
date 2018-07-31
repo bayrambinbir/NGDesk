@@ -1,22 +1,28 @@
 package com.NGDesk.tests.login;
 
 import org.testng.annotations.Test;
+
+
+//TC7-GS 
 import com.NGDesk.pages.LoginPage;
 import com.NGDesk.tests.TestBase;
+
 import com.NGDesk.utilities.ConfigurationReader;
-//TC8-GS
-public class LoginNegativeTest extends TestBase {
+//TC7-GS
+public class LoginPositiveTest extends TestBase {
 
 	LoginPage loginPage= new LoginPage();
 	
-   //TC8-GS
+	
+	//TC7-GS
 	@Test
-	public void loginNegativeTest() {
+	public void loginWithPositiveCredentials() {
+		
 		driver.get(ConfigurationReader.getProperty("loginPageUrl"));
 		loginPage.username.sendKeys(ConfigurationReader.getProperty("username"));
-		loginPage.password.sendKeys(ConfigurationReader.getProperty("negativePassword"));
+		loginPage.password.sendKeys(ConfigurationReader.getProperty("password"));
 		loginPage.loginButton.click();
-		
-
 	}
+	
+
 }
