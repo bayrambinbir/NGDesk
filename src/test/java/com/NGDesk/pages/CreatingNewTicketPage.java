@@ -14,6 +14,12 @@ public class CreatingNewTicketPage {
 	
 	// Bayram test case 4 (SPA-678)
 	
+	@FindBy(xpath="//i[@class='fa fa-ticket icon-color']")
+	public WebElement ticketsIcon;
+	
+	@FindBy(xpath="//li[contains(text(),'New Ticket')]")
+	public WebElement newTicketIcon;
+	
 	@FindBy(xpath="//h3[text()='New Ticket']")
 	public WebElement newTicketTitle;
 
@@ -46,7 +52,7 @@ public class CreatingNewTicketPage {
 	
 	@FindBy (id = "submit")
 	public WebElement submit;
-	//
+	
 	
 	
 }
