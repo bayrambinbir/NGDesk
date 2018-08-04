@@ -23,11 +23,26 @@ public class SingleTicketPageTests extends TestBase {
 	LoginPage loginPage = new LoginPage();
 
 
-
+	@Test(groups= {"smoke"})
+	public void ticketTest() {
+		homePage.loginButton.click();
+		homePage.subdomainBox.sendKeys(ConfigurationReader.getProperty("subdomain"));
+		homePage.goLoginButton.click();
+		loginPage.username.sendKeys(ConfigurationReader.getProperty("username"));
+		loginPage.password.sendKeys(ConfigurationReader.getProperty("password"));
+		loginPage.loginButton.click();
+		String actualUserName = ticketPage.usernameOnTicketPage.getText();
+		String expectedUserName = "zhumabaf";
+		assertEquals(actualUserName, expectedUserName);
+		ticketPage.randomTicket.click();
+		
+	}	
 
 	@Test(groups= {"deneme"})
 	public void viewCreatedTicket() throws InterruptedException {
-		driver.get(ConfigurationReader.getProperty("loginDirectPageUrl"));
+		homePage.loginButton.click();
+		homePage.subdomainBox.sendKeys(ConfigurationReader.getProperty("subdomaina"));
+		homePage.goLoginButton.click();
 		loginPage.username.sendKeys(ConfigurationReader.getProperty("usernamea"));
 		loginPage.password.sendKeys(ConfigurationReader.getProperty("passworda"));
 		loginPage.loginButton.click();
@@ -36,10 +51,11 @@ public class SingleTicketPageTests extends TestBase {
 		Actions actions = new Actions(driver);
 		actions.moveToElement(ticketPage.hoverTicketButton).perform();
 		BrowserUtils.waitForVisibility(ticketPage.newticket, 5);
-		ticketPage.newticket.click();
+		actions.click(ticketPage.newticket).perform();
 		
-		String expectedRequesterTab = "asli turk";
-		BrowserUtils.waitForVisibility(singleTicketPage.requesterTab, 5);
+		String expectedRequesterTab = "ngdesk43";
+		//BrowserUtils.waitForVisibility(singleTicketPage.requesterTab, 5);
+		BrowserUtils.waitFor(5);
 		String actualRequesterTab = singleTicketPage.requesterTab.getText();
 		
 		System.out.println("actualRequesterTab : "  + actualRequesterTab);
