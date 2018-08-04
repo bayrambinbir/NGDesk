@@ -9,16 +9,16 @@ import org.testng.annotations.Test;
 
 import com.NGDesk.pages.HomePage;
 import com.NGDesk.pages.LoginPage;
-import com.NGDesk.pages.SingleTicketPage;
+import com.NGDesk.pages.NewTicketPage;
 import com.NGDesk.pages.TicketPage;
 import com.NGDesk.tests.TestBase;
 import com.NGDesk.utilities.BrowserUtils;
 import com.NGDesk.utilities.ConfigurationReader;
 
-public class SingleTicketPageTests extends TestBase {
+public class NewTicketPageTests extends TestBase {
 
 	TicketPage ticketPage = new TicketPage();
-	SingleTicketPage singleTicketPage = new SingleTicketPage();
+	NewTicketPage singleTicketPage = new NewTicketPage();
 	HomePage homePage = new HomePage();
 	LoginPage loginPage = new LoginPage();
 
@@ -37,7 +37,7 @@ public class SingleTicketPageTests extends TestBase {
 		ticketPage.randomTicket.click();
 		
 	}	
-
+	
 	@Test(groups= {"deneme"})
 	public void viewCreatedTicket() throws InterruptedException {
 		homePage.loginButton.click();

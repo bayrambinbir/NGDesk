@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 import com.NGDesk.pages.ControlPanelPage;
 import com.NGDesk.pages.HomePage;
 import com.NGDesk.pages.LoginPage;
-import com.NGDesk.pages.SingleTicketPage;
+import com.NGDesk.pages.NewTicketPage;
 import com.NGDesk.pages.TicketPage;
 import com.NGDesk.tests.TestBase;
 import com.NGDesk.utilities.BrowserUtils;
@@ -19,7 +19,7 @@ import com.NGDesk.utilities.ConfigurationReader;
 public class TicketsPageTests extends TestBase {
 
 	TicketPage ticketPage = new TicketPage();
-	SingleTicketPage singleTicketPage = new SingleTicketPage();
+	NewTicketPage singleTicketPage = new NewTicketPage();
 	HomePage homePage = new HomePage();
 	LoginPage loginPage = new LoginPage();
 	ControlPanelPage controlPanelPage = new ControlPanelPage();

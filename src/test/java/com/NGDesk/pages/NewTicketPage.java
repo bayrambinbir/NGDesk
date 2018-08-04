@@ -3,7 +3,7 @@ package com.NGDesk.pages;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class SingleTicketPage {
+public class NewTicketPage {
 	
 	@FindBy(partialLinkText="ngdesk43")
 	public WebElement requesterTab;
