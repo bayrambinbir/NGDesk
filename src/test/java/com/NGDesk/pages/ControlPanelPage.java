@@ -15,5 +15,17 @@ public class ControlPanelPage {
 	@FindBy(xpath="(//div[@class='col-12 col-sm-12'])[1]")
 	public WebElement controlPanelText;
 	
+	@FindBy(partialLinkText="Public")
+	public WebElement publicButton;
+	
+	@FindBy(id="messageAreaExternal")
+	public WebElement publicTextBox;
+	
+	@FindBy(partialLinkText="Submit")
+	public WebElement submit;
+	
+	
+	
+	
 
 }
