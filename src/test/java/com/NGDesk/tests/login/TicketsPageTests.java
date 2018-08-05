@@ -67,10 +67,41 @@ public class TicketsPageTests extends TestBase {
 		controlPanelPage.waitingOnCustomerResponse.click();
 		controlPanelPage.submitButtonOnSubmitReplyPage.click();
 		
-		//assertTrue(driver.getPageSource().contains("How may I help you?"));
+		BrowserUtils.waitFor(5);
+		assertTrue(driver.getPageSource().contains("How may I help you?"));
 	}
 		
 
+	public void respondingToATicketInternally() {
+		driver.get(ConfigurationReader.getProperty("loginDirectPageUrlGulnoza"));
+		loginPage.username.sendKeys(ConfigurationReader.getProperty("usernameGulnoza"));
+		loginPage.password.sendKeys(ConfigurationReader.getProperty("passwordGulnoza"));
+		loginPage.loginButton.click();
+		
+		actions.moveToElement(ticketPage.hoverTicketButton).perform();
+		BrowserUtils.waitForVisibility(ticketPage.viewTickets, 5);
+		actions.click(ticketPage.viewTickets).perform();
+		BrowserUtils.waitFor(2);
+
+		ticketPage.anyTicket.click();
+		controlPanelPage.internalButton.click();
+		
+		controlPanelPage.internalTextBox.sendKeys("I am in charge of this ticket");
+		
+		actions.moveToElement(controlPanelPage.submit).click().build().perform();
+		
+		BrowserUtils.waitFor(5);
+		String actual = controlPanelPage.submitReplyText.getText();
+		String expected = "Submit Reply";
+		assertEquals(actual, expected);
+		
+		controlPanelPage.submitReplyDropdownMenu.click();
+		controlPanelPage.waitingOnCustomerResponse.click();
+		controlPanelPage.submitButtonOnSubmitReplyPage.click();
+		
+		BrowserUtils.waitFor(5);
+		assertTrue(driver.getPageSource().contains("I am in charge of this ticket"));
+	}
 		
 		
 		

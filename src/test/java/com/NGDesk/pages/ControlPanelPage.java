@@ -36,7 +36,11 @@ public class ControlPanelPage {
 	@FindBy(xpath="(//div[@class='modal-footer'])[2]//button[.='Submit']")
 	public WebElement submitButtonOnSubmitReplyPage;
 	
+	@FindBy(partialLinkText="Internal")
+	public WebElement internalButton;
 	
+	@FindBy(id="messageAreaInternal")
+	public WebElement internalTextBox;
 	
 	
 	
