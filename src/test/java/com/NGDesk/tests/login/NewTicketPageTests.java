@@ -14,6 +14,7 @@ import com.NGDesk.pages.TicketPage;
 import com.NGDesk.tests.TestBase;
 import com.NGDesk.utilities.BrowserUtils;
 import com.NGDesk.utilities.ConfigurationReader;
+import com.NGDesk.utilities.Driver;
 
 public class NewTicketPageTests extends TestBase {
 
@@ -21,7 +22,7 @@ public class NewTicketPageTests extends TestBase {
 	NewTicketPage singleTicketPage = new NewTicketPage();
 	HomePage homePage = new HomePage();
 	LoginPage loginPage = new LoginPage();
-
+	Actions actions = new Actions(Driver.getDriver());
 
 	@Test(groups= {"smoke"})
 	public void ticketTest() {
@@ -47,17 +48,23 @@ public class NewTicketPageTests extends TestBase {
 		loginPage.password.sendKeys(ConfigurationReader.getProperty("passworda"));
 		loginPage.loginButton.click();
 		
-		driver.manage().timeouts().pageLoadTimeout(150, TimeUnit.SECONDS);
-		Actions actions = new Actions(driver);
+		//driver.manage().timeouts().pageLoadTimeout(150, TimeUnit.SECONDS);
+		//Actions actions = new Actions(driver);
 		actions.moveToElement(ticketPage.hoverTicketButton).perform();
 		BrowserUtils.waitForVisibility(ticketPage.newticket, 5);
+		String login = driver.getWindowHandle();
+		System.out.println("login : " + login);
 		actions.click(ticketPage.newticket).perform();
 		
+		
+		BrowserUtils.switchToWindow("'ngDesk - Portal'");
 		String expectedRequesterTab = "ngdesk43";
 		//BrowserUtils.waitForVisibility(singleTicketPage.requesterTab, 5);
 		BrowserUtils.waitFor(5);
 		String actualRequesterTab = singleTicketPage.requesterTab.getText();
 		
+		String ticket = driver.getWindowHandle();
+		System.out.println("ticket : " + ticket);
 		System.out.println("actualRequesterTab : "  + actualRequesterTab);
 		assertEquals(actualRequesterTab, expectedRequesterTab);
 		
@@ -71,13 +78,13 @@ public class NewTicketPageTests extends TestBase {
 		
 		singleTicketPage.subject.sendKeys("Testing new ticket 123");
 		
-		actions = new Actions(driver);
+		//actions = new Actions(driver);
 		actions.moveToElement(singleTicketPage.body);
 		actions.click();
 		actions.sendKeys("Being automation tester is cool");
 		actions.build().perform();
 		
-		actions = new Actions(driver);
+		//actions = new Actions(driver);
 		BrowserUtils.waitForVisibility(singleTicketPage.ccUsers, 5);
 		actions.moveToElement(singleTicketPage.ccUsers);
 		actions.click();
@@ -91,7 +98,7 @@ public class NewTicketPageTests extends TestBase {
 		String actualConfirmationText = singleTicketPage.confirmationNewTicket.getAttribute("innerHTML");
 		assertEquals(actualConfirmationText, expectedConfirmationText);
 		
-		actions = new Actions(driver);
+		//actions = new Actions(driver);
 		BrowserUtils.waitForVisibility(singleTicketPage.saveAndSubmit, 5);
 		actions.moveToElement(singleTicketPage.saveAndSubmit);
 		actions.click();

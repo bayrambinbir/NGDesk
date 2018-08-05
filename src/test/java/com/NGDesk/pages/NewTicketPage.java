@@ -5,7 +5,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class NewTicketPage {
 	
-	@FindBy(partialLinkText="ngdesk43")
+	@FindBy(css=".selectize-input")
 	public WebElement requesterTab;
 	
 	@FindBy(xpath="//input[@class='ui-select-search ui-select-toggle ng-pristine ng-untouched ng-valid ng-empty']")
