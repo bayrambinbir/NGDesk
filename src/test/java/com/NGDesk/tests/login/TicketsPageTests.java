@@ -1,6 +1,7 @@
 package com.NGDesk.tests.login;
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 import java.util.concurrent.TimeUnit;
 
@@ -38,20 +39,35 @@ public class TicketsPageTests extends TestBase {
 		ticketPage.randomTicket.click();
 		
 	}	
+	@Test(groups= {"deneme"})
 	public void respondingToATicketPublicly() {
 		driver.get(ConfigurationReader.getProperty("loginDirectPageUrl"));
 		loginPage.username.sendKeys(ConfigurationReader.getProperty("usernamea"));
 		loginPage.password.sendKeys(ConfigurationReader.getProperty("passworda"));
 		loginPage.loginButton.click();
 		
+		actions.moveToElement(ticketPage.hoverTicketButton).perform();
+		BrowserUtils.waitForVisibility(ticketPage.viewTickets, 5);
+		actions.click(ticketPage.viewTickets).perform();
+		BrowserUtils.waitFor(2);
+
 		ticketPage.anyTicket.click();
 		controlPanelPage.publicButton.click();
 		
 		controlPanelPage.publicTextBox.sendKeys("How may I help you?");
 		
-		controlPanelPage.submit.click();
+		actions.moveToElement(controlPanelPage.submit).click().build().perform();
 		
+		BrowserUtils.waitFor(5);
+		String actual = controlPanelPage.submitReplyText.getText();
+		String expected = "Submit Reply";
+		assertEquals(actual, expected);
 		
+		controlPanelPage.submitReplyDropdownMenu.click();
+		controlPanelPage.waitingOnCustomerResponse.click();
+		controlPanelPage.submitButtonOnSubmitReplyPage.click();
+		
+		//assertTrue(driver.getPageSource().contains("How may I help you?"));
 	}
 		
 

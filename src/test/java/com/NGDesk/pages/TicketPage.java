@@ -24,7 +24,10 @@ public class TicketPage {
 	@FindBy(xpath="//li[.='New Ticket']")
 	public WebElement newticket;
 	
-	@FindBy(xpath="//tbody/tr/td")
+	@FindBy(xpath="//li[.='View Tickets']")
+	public WebElement viewTickets;
+	
+	@FindBy(xpath="//tbody/tr/td[2]")
 	public WebElement anyTicket;
 
 	////tbody/tr/td

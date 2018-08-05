@@ -21,8 +21,21 @@ public class ControlPanelPage {
 	@FindBy(id="messageAreaExternal")
 	public WebElement publicTextBox;
 	
-	@FindBy(partialLinkText="Submit")
+	@FindBy(xpath="//div[@class='row align-content-center']//div[@class='float-right']")
 	public WebElement submit;
+	
+	@FindBy(css=".modal-title.text-center.ng-binding")
+	public WebElement submitReplyText;
+	
+	@FindBy(xpath="(//div[@class='selectize-input'])[3]")
+	public WebElement submitReplyDropdownMenu;
+	
+	@FindBy(xpath="//div[.='Waiting on Customer Response']")
+	public WebElement waitingOnCustomerResponse;
+	
+	@FindBy(xpath="(//div[@class='modal-footer'])[2]//button[.='Submit']")
+	public WebElement submitButtonOnSubmitReplyPage;
+	
 	
 	
 	
