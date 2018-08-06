@@ -80,7 +80,7 @@ public abstract class TestBase {
 		} else if (result.getStatus() == ITestResult.SKIP) {
 			extentLogger.skip("Test Case Skipped is " + result.getName());
 		}
-//		Driver.closeDriver();
+		Driver.closeDriver();
 
 
 	}

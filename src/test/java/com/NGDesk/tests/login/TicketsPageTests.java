@@ -1,31 +1,33 @@
 package com.NGDesk.tests.login;
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.Test;
 
+import com.NGDesk.pages.ControlPanelPage;
 import com.NGDesk.pages.HomePage;
 import com.NGDesk.pages.LoginPage;
+import com.NGDesk.pages.NewTicketPage;
 import com.NGDesk.pages.TicketPage;
 import com.NGDesk.tests.TestBase;
-import com.NGDesk.utilities.ConfigurationReader;
 import com.NGDesk.utilities.BrowserUtils;
+import com.NGDesk.utilities.ConfigurationReader;
 
 public class TicketsPageTests extends TestBase {
 
 	TicketPage ticketPage = new TicketPage();
+	NewTicketPage singleTicketPage = new NewTicketPage();
 	HomePage homePage = new HomePage();
 	LoginPage loginPage = new LoginPage();
-
+	ControlPanelPage controlPanelPage = new ControlPanelPage();
 
 	@Test(groups= {"smoke"})
 	public void ticketTest() {
+		extentLogger = report.createTest("ticketTest");
 		homePage.loginButton.click();
 		homePage.subdomainBox.sendKeys(ConfigurationReader.getProperty("subdomain"));
 		homePage.goLoginButton.click();
@@ -37,74 +39,72 @@ public class TicketsPageTests extends TestBase {
 		assertEquals(actualUserName, expectedUserName);
 		ticketPage.randomTicket.click();
 		
-	}
+	}	
 
-	@Test(groups= {"deneme"})
-	public void viewCreatedTicket() throws InterruptedException {
+	public void respondingToATicketPublicly() {
+		extentLogger = report.createTest("respondingToATicketInternally");
 		driver.get(ConfigurationReader.getProperty("loginDirectPageUrl"));
 		loginPage.username.sendKeys(ConfigurationReader.getProperty("usernamea"));
 		loginPage.password.sendKeys(ConfigurationReader.getProperty("passworda"));
 		loginPage.loginButton.click();
 		
-		driver.manage().timeouts().pageLoadTimeout(150, TimeUnit.SECONDS);
-		Actions actions = new Actions(driver);
 		actions.moveToElement(ticketPage.hoverTicketButton).perform();
-		BrowserUtils.waitForVisibility(ticketPage.newticket, 5);
-		ticketPage.newticket.click();
+		BrowserUtils.waitForVisibility(ticketPage.viewTickets, 5);
+		actions.click(ticketPage.viewTickets).perform();
+		BrowserUtils.waitFor(2);
+
+		ticketPage.anyTicket.click();
+		controlPanelPage.publicButton.click();
 		
-		String expectedRequesterTab = "asli turk";
-		BrowserUtils.waitForVisibility(ticketPage.requesterTab, 5);
-		String actualRequesterTab = ticketPage.requesterTab.getText();
+		controlPanelPage.publicTextBox.sendKeys("How may I help you?");
 		
-		System.out.println("actualRequesterTab : "  + actualRequesterTab);
-		assertEquals(actualRequesterTab, expectedRequesterTab);
-		
-		ticketPage.severityTabClick.click();
-		ticketPage.severityTabLow.click();
+		actions.moveToElement(controlPanelPage.submit).click().build().perform();
 		
 		BrowserUtils.waitFor(5);
-
-		ticketPage.teamTabClick.click();
-		ticketPage.teamTabDefault.click();
+		String actual = controlPanelPage.submitReplyText.getText();
+		String expected = "Submit Reply";
+		assertEquals(actual, expected);
 		
-		ticketPage.subject.sendKeys("Testing new ticket 123");
+		controlPanelPage.submitReplyDropdownMenu.click();
+		controlPanelPage.waitingOnCustomerResponse.click();
+		controlPanelPage.submitButtonOnSubmitReplyPage.click();
 		
-		actions = new Actions(driver);
-		actions.moveToElement(ticketPage.body);
-		actions.click();
-		actions.sendKeys("Being automation tester is cool");
-		actions.build().perform();
-		
-		actions = new Actions(driver);
-		BrowserUtils.waitForVisibility(ticketPage.ccUsers, 5);
-		actions.moveToElement(ticketPage.ccUsers);
-		actions.click();
-		actions.sendKeys("asat1121");
-		actions.build().perform();
-		actions.moveToElement(ticketPage.asat1121).click().build().perform();
-		
-		ticketPage.submit.click();
-		
-		String expectedConfirmationText = "Confirm New Ticket";
-		String actualConfirmationText = ticketPage.confirmationNewTicket.getAttribute("innerHTML");
-		assertEquals(actualConfirmationText, expectedConfirmationText);
-		
-		actions = new Actions(driver);
-		BrowserUtils.waitForVisibility(ticketPage.saveAndSubmit, 5);
-		actions.moveToElement(ticketPage.saveAndSubmit);
-		actions.click();
-		actions.build().perform();
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		BrowserUtils.waitFor(5);
+		assertTrue(driver.getPageSource().contains("How may I help you?"));
 	}
+	@Test(groups= {"deneme"})	
+	public void respondingToATicketInternally() {
+		extentLogger = report.createTest("respondingToATicketInternally");
+		
+		driver.get(ConfigurationReader.getProperty("loginDirectPageUrlGulnoza"));
+		loginPage.username.sendKeys(ConfigurationReader.getProperty("usernameGulnoza"));
+		loginPage.password.sendKeys(ConfigurationReader.getProperty("passwordGulnoza"));
+		loginPage.loginButton.click();
+		
+		actions.moveToElement(ticketPage.hoverTicketButton).perform();
+		BrowserUtils.waitForVisibility(ticketPage.viewTickets, 5);
+		actions.click(ticketPage.viewTickets).perform();
+		BrowserUtils.waitFor(2);
+
+		ticketPage.anyTicket.click();
+		controlPanelPage.internalButton.click();
+		
+		controlPanelPage.internalTextBox.sendKeys("I am in charge of this ticket");
+		
+		actions.moveToElement(controlPanelPage.submit).click().build().perform();
+		
+		BrowserUtils.waitFor(5);
+		String actual = controlPanelPage.submitReplyText.getText();
+		String expected = "Submit Reply";
+		assertEquals(actual, expected);
+		
+		controlPanelPage.submitReplyDropdownMenu.click();
+		controlPanelPage.waitingOnCustomerResponse.click();
+		controlPanelPage.submitButtonOnSubmitReplyPage.click();
+		
+		BrowserUtils.waitFor(5);
+		assertTrue(driver.getPageSource().contains("I am in charge of this ticket"));
+	}
+	
+		
 }

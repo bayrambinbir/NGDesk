@@ -4,8 +4,7 @@
 <suite name="Smoke tests" verbose="2">
 
 
-
-	<test name="NGDesk test">
+	<test name="NGDesk deneme test">
 		<!--group prints inside all group methods certain method -->
 		<groups>
 			<run>
@@ -13,10 +12,10 @@
 				<include name="deneme"></include>
 			</run>
 		</groups>
-		<classes>
+		<packages>
 			<!--we give our class path here -->
-			<class name="com.NGDesk.tests.login.LoginPageTests"></class>
-		</classes>
+			<package name="com.NGDesk.tests.login"></package>
+		</packages>
 	</test>
 
 </suite>
