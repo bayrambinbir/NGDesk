@@ -24,24 +24,9 @@ public class NewTicketPageTests extends TestBase {
 	LoginPage loginPage = new LoginPage();
 	Actions actions = new Actions(Driver.getDriver());
 
-	@Test(groups= {"smoke"})
-	public void ticketTest() {
-		homePage.loginButton.click();
-		homePage.subdomainBox.sendKeys(ConfigurationReader.getProperty("subdomain"));
-		homePage.goLoginButton.click();
-		loginPage.username.sendKeys(ConfigurationReader.getProperty("username"));
-		loginPage.password.sendKeys(ConfigurationReader.getProperty("password"));
-		loginPage.loginButton.click();
-		String actualUserName = ticketPage.usernameOnTicketPage.getText();
-		String expectedUserName = "zhumabaf";
-		assertEquals(actualUserName, expectedUserName);
-		ticketPage.randomTicket.click();
-		
-	}	
-	
-
+	@Test(groups= {"deneme"})
 	public void viewCreatedTicket() throws InterruptedException {
-		extentLogger = report.createTest("view created test");
+		extentLogger = report.createTest("viewCreatedTicket");
 		homePage.loginButton.click();
 		homePage.subdomainBox.sendKeys(ConfigurationReader.getProperty("subdomaina"));
 		homePage.goLoginButton.click();

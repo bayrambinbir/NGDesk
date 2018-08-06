@@ -27,6 +27,7 @@ public class TicketsPageTests extends TestBase {
 
 	@Test(groups= {"smoke"})
 	public void ticketTest() {
+		extentLogger = report.createTest("ticketTest");
 		homePage.loginButton.click();
 		homePage.subdomainBox.sendKeys(ConfigurationReader.getProperty("subdomain"));
 		homePage.goLoginButton.click();
@@ -41,6 +42,7 @@ public class TicketsPageTests extends TestBase {
 	}	
 
 	public void respondingToATicketPublicly() {
+		extentLogger = report.createTest("respondingToATicketInternally");
 		driver.get(ConfigurationReader.getProperty("loginDirectPageUrl"));
 		loginPage.username.sendKeys(ConfigurationReader.getProperty("usernamea"));
 		loginPage.password.sendKeys(ConfigurationReader.getProperty("passworda"));
@@ -72,7 +74,7 @@ public class TicketsPageTests extends TestBase {
 	}
 	@Test(groups= {"deneme"})	
 	public void respondingToATicketInternally() {
-		extentLogger = report.createTest("view created test");
+		extentLogger = report.createTest("respondingToATicketInternally");
 		
 		driver.get(ConfigurationReader.getProperty("loginDirectPageUrlGulnoza"));
 		loginPage.username.sendKeys(ConfigurationReader.getProperty("usernameGulnoza"));
