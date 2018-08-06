@@ -39,7 +39,7 @@ public class TicketsPageTests extends TestBase {
 		ticketPage.randomTicket.click();
 		
 	}	
-	@Test(groups= {"deneme"})
+
 	public void respondingToATicketPublicly() {
 		driver.get(ConfigurationReader.getProperty("loginDirectPageUrl"));
 		loginPage.username.sendKeys(ConfigurationReader.getProperty("usernamea"));
@@ -70,9 +70,10 @@ public class TicketsPageTests extends TestBase {
 		BrowserUtils.waitFor(5);
 		assertTrue(driver.getPageSource().contains("How may I help you?"));
 	}
-		
-
+	@Test(groups= {"deneme"})	
 	public void respondingToATicketInternally() {
+		extentLogger = report.createTest("view created test");
+		
 		driver.get(ConfigurationReader.getProperty("loginDirectPageUrlGulnoza"));
 		loginPage.username.sendKeys(ConfigurationReader.getProperty("usernameGulnoza"));
 		loginPage.password.sendKeys(ConfigurationReader.getProperty("passwordGulnoza"));
@@ -102,10 +103,6 @@ public class TicketsPageTests extends TestBase {
 		BrowserUtils.waitFor(5);
 		assertTrue(driver.getPageSource().contains("I am in charge of this ticket"));
 	}
-		
-		
-		
-		
-		
+	
 		
 }

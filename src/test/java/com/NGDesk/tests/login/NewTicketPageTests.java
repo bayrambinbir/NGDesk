@@ -39,8 +39,9 @@ public class NewTicketPageTests extends TestBase {
 		
 	}	
 	
-	@Test(groups= {"deneme"})
+
 	public void viewCreatedTicket() throws InterruptedException {
+		extentLogger = report.createTest("view created test");
 		homePage.loginButton.click();
 		homePage.subdomainBox.sendKeys(ConfigurationReader.getProperty("subdomaina"));
 		homePage.goLoginButton.click();
