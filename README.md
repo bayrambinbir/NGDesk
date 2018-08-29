@@ -1,5 +1,5 @@
 # NGDesk
-Automating NGDesk website with Selenium WebDriver + Java with team of Automation Testers.
+Automating NGDesk website with Selenium WebDriver + Java with a team of Automation Testers.
 
 GOALS:
 * User enters his/her email and password,
